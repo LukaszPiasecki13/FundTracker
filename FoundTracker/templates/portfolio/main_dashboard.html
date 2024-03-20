@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% include 'partials/_messages.html' %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/portfolio/main_dashboard.css' %}" >
+    <style>
+        html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+    </style>
+</head>
+<body class="w3-light-grey" style='margin-left:auto; margin-right:auto'>
+
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:100px;margin-right:100px;">
+
+    <!-- Header -->
+    <header class="w3-container" style="padding-top:22px;">
+        <h5><b><i class="fa fa-dashboard"></i> My Statistics</b></h5>
+    </header>
+
+
+    <div id='cockpitContent' class="w3-panel">
+        <div class='cockpitSumDetails'>
+            <div class="cockpitPocketHeader">All account summary in PLN</div>
+            <div class="cockpitPocketDetails">
+                <div class='w3-third w3-border' style="width: calc(33.33% - 10px);float: left;margin-right: 5px;">
+                    <table style='width:100%'>
+                        <tr>
+                            <td>Zmiana dzienna:</td>
+                            <td><span class='cockpitResultUp'>0,34 %</span></td>
+                        </tr>
+                        <tr>
+                            <td>Zysk dzienny:</td>
+                            <td><span class='cockpitResultUp'>59 022,68</span></td>
+                        </tr>
+                        <tr>
+                            <td>Walory wzrosty:</td>
+                            <td><span class='cockpitResultUp'>75</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class='w3-third w3-border' style="width: calc(33.33% - 10px);float: left;margin-right: 5px;">
+                    <table style='width:100%'>
+                        <tr>
+                            <td>Zysk całkowity:</td>
+                            <td><span class='cockpitResultUp'>6 230,52<span
+                                    style='font-size:10px;'> tys.</span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Zysk bieżący:</td>
+                            <td><span class='cockpitResultUp'>5 865,73<span
+                                    style='font-size:10px;'> tys.</span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Walory spadki:</td>
+                            <td><span class='cockpitResultDown'>52</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class='w3-third w3-border' style="width: calc(33.33% - 10px);float: left;margin-right: 5px;">
+                    <table style='width:100%'>
+                        <tr>
+                            <td>Wartość:</td>
+                            <td><span class='cockpitResultUp'>20,44<span
+                                    style='font-size:10px;'> mil.</span></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Stopa zwrotu:</td>
+                            <td><span class='cockpitResultUp'>30,48 %</span></td>
+                        </tr>
+                        <tr>
+                            <td>Śr. roczna stopa:</td>
+                            <td><span class='cockpitResultUp'>2,11 %</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div style='clear:left;'></div>
+            </div>
+
+            <div class="cockpitPocketHeader">Accounts in PLN</div>
+            <div class="cockpitPocketDetails">
+                <div class="w3-third cockpitAccountDetails">
+                    <div class="cockpitPocketName" data-url="{% url 'pocket' %}">Nazwa Konta</div>
+                    <div class="cockpitValue">Wartość: 724 170,00 PLN</div>
+                    <div>
+                        <table style='width:100%'>
+                            <tr>
+                                <td>Zysk całkowity:</td>
+                                <td><span class='cockpitResultUp'>0,00</span></td>
+                            </tr>
+                            <tr>
+                                <td>Zmiana dzienna:</td>
+                                <td><span class='cockpitResultUp'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Zmiana miesięczna:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Zmiana roczna:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Zmiana od założenia:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Śr. roczna stopa:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style='clear:left;'></div>
+                </div>
+                <div class="w3-third cockpitAccountDetails">
+                    <div class="cockpitPocketName">Nazwa Konta</div>
+                    <div class="cockpitValue">Wartość: 724 170,00 PLN</div>
+                    <div>
+                        <table style='width:100%'>
+                            <tr>
+                                <td>Zysk całkowity:</td>
+                                <td><span class='cockpitResultUp'>0,00</span></td>
+                            </tr>
+                            <tr>
+                                <td>Zmiana dzienna:</td>
+                                <td><span class='cockpitResultUp'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Zmiana miesięczna:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Zmiana roczna:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Zmiana od założenia:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Śr. roczna stopa:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style='clear:left;'></div>
+                </div>
+                <div class="w3-third cockpitAccountDetails">
+                    <div class="cockpitPocketName">Nazwa Konta</div>
+                    <div class="cockpitValue">Wartość: 724 170,00 PLN</div>
+                    <div>
+                        <table style='width:100%'>
+                            <tr>
+                                <td>Zysk całkowity:</td>
+                                <td><span class='cockpitResultUp'>0,00</span></td>
+                            </tr>
+                            <tr>
+                                <td>Zmiana dzienna:</td>
+                                <td><span class='cockpitResultUp'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Zmiana miesięczna:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Zmiana roczna:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Zmiana od założenia:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 10px">Śr. roczna stopa:</td>
+                                <td><span class='cockpitResultUpSmall'>0,34 %</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style='clear:left;'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="{% static 'js/portfolio/main_dashboard.js' %}"></script>
+{% endblock content %}
+
+

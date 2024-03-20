@@ -1,0 +1,37 @@
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+
+
+/* The popup form - hidden by default */
+.form-popup {
+  max-width: 600px;
+  padding: 10px;
+
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  border: 3px solid #f1f1f1;
+  background-color: white;
+  z-index: 9;
+}
+
+
+
+
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Kolor przyciemnienia */
+    z-index: 8;
+    display: none;  /* Ukrywamy na początku */
+}
+
+.overlay.show {
+    display: block;  /* Pokazujemy, gdy jest dodana klasa 'show' */
+}

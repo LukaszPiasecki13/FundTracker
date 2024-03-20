@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index Page</title>
+</head>
+<body>
+    <h1>Welcome to the Index Page</h1>
+
+    <h2>Property Data:</h2>
+
+    {% if data_list %}
+        <ul>
+            {% for property_data in data_list %}
+                <li>
+                    <strong>Title:</strong> {{ property_data.title }}<br>
+                    <strong>Location:</strong> {{ property_data.location }}<br>
+                    <strong>Description:</strong> {{ property_data.description }}<br>
+                    <strong>Price:</strong> {{ property_data.price }}<br>
+                    <strong>Available Start:</strong> {{ property_data.available_start }}<br>
+                    <strong>Available End:</strong> {{ property_data.available_end }}<br>
+                    <strong>Property Type:</strong> {{ property_data.property_type.name }}<br>
+                    <strong>Charger:</strong> {{ property_data.charger.name }} (Power: {{ property_data.charger.power }})<br>
+                    <strong>Photos:</strong><br>
+                    <ul>
+                        {% for photo in property_data.photos %}
+                            <li><img src="{{ photo.url }}" alt="{{ photo.alt_text }}"></li>
+                        {% endfor %}
+                    </ul>
+                    <strong>Rooms:</strong><br>
+                    <ul>
+                        {% for room in property_data.rooms %}
+                            <li>{{ room.name }} (Capacity: {{ room.capacity }})</li>
+                        {% endfor %}
+                    </ul>
+                    <strong>Amenities:</strong><br>
+                    <ul>
+                        {% for amenity in property_data.amenities %}
+                            <li>{{ amenity.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No property data available.</p>
+    {% endif %}
+</body>
+</html>
