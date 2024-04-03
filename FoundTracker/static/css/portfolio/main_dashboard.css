@@ -1,95 +1,88 @@
-        #startChargingButton {
-            padding: 45px 260px;
-            font-size: 29px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .cockpitSumDetails {
-            width: 750px;
-            align: center;
-            margin: auto;
-        }
+#startChargingButton {
+  padding: 45px 260px;
+  font-size: 29px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cockpitSumDetails {
+  width: 750px;
+  align: center;
+  margin: auto;
+}
 
-        .cockpitPocketHeader {
-            margin-left: 10px;
-            font-weight: bold;
-            font-size: 120%;
-        }
+.cockpitPocketHeader {
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 120%;
+}
 
-         .cockpitPocketDetails {
-            margin-top: 3px;
-            height: auto;
-            margin-bottom: 10px;
+.cockpitPocketDetails {
+  margin-top: 3px;
+  height: auto;
+  margin-bottom: 10px;
+}
 
-        }
+.cockpitResultUp {
+  width: 100px;
+  height: 20px;
+  background-color: #170;
+  border: 1px solid #fff;
+  font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  color: white;
+  display: inline-block;
+  float: right;
+  margin-right: 4px;
+  text-align: center;
+}
 
-        .cockpitResultUp {
-            width: 100px;
-            height: 20px;
-            background-color: #170;
-            border: 1px solid #fff;
-            font: bold 14px Verdana, Arial, Helvetica, sans-serif;
-            color: #ffffff;
-            color: white;
-            display: inline-block;
-            float: right;
-            margin-right: 4px;
-            text-align: center;
-        }
+.cockpitResultUpSmall {
+  width: 80px;
+  height: 14px;
+  background-color: #170;
+  border: 1px solid #fff;
+  font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  color: white;
+  display: inline-block;
+  float: right;
+  margin-right: 4px;
+  text-align: center;
+}
 
-         .cockpitResultUpSmall {
-            width: 80px;
-            height: 14px;
-            background-color: #170;
-            border: 1px solid #fff;
-            font: normal 11px Verdana, Arial, Helvetica, sans-serif;
-            color: #ffffff;
-            color: white;
-            display: inline-block;
-            float: right;
-            margin-right: 4px;
-            text-align: center;
-        }
+.cockpitResultDown {
+  width: 100px;
+  height: 20px;
+  background-color: #db0000;
+  border: 1px solid #fff;
+  font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  color: white;
+  display: inline-block;
+  float: right;
+  margin-right: 4px;
+  text-align: center;
+}
 
-         .cockpitResultDown {
-            width: 100px;
-            height: 20px;
-            background-color: #DB0000;
-            border: 1px solid #fff;
-            font: bold 14px Verdana, Arial, Helvetica, sans-serif;
-            color: #ffffff;
-            color: white;
-            display: inline-block;
-            float: right;
-            margin-right: 4px;
-            text-align: center;
-        }
+.cockpitPocketName {
+  text-align: center;
+  color: #ce9a31;
+  font: bold 16px Verdana, Arial, Helvetica;
+  cursor: pointer;
+}
+.cockpitValue {
+  text-align: center;
+  color: #3e3f4b;
+  font: bold 14px Verdana, Arial, Helvetica;
+}
 
-
-
-
-
-
-
-        .cockpitPocketName {
-            text-align: center;
-            color: #CE9A31;
-            font: bold 16px Verdana, Arial, Helvetica;
-            cursor: pointer;
-        }
-        .cockpitValue {
-            text-align: center;
-            color: #3E3F4B;
-            font: bold 14px Verdana, Arial, Helvetica;
-        }
-
-        .cockpitAccountDetails {
-            border-style:solid;
-            border-width:1px;
-            width: calc(33.33% - 10px);
-            float: left;
-            margin-right: 5px;
-        }
+.cockpitAccountDetails {
+  border-style: solid;
+  border-width: 1px;
+  width: calc(33.33% - 10px);
+  float: left;
+  margin-right: 5px;
+}

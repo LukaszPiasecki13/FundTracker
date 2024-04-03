@@ -1,9 +1,9 @@
 
-console.log("main_dashboard.js is connected");
 var cockpitPocketElements = document.querySelectorAll(".cockpitPocketName");
 cockpitPocketElements.forEach(function (element) {
     element.addEventListener("click", function () {
-        var urlName = this.getAttribute('data-url');
+        var pocketName = this.textContent.trim(); // Pobieranie nazwy Konta
+        var urlName = this.getAttribute('data-url') + "?pocket_name=" + encodeURIComponent(pocketName);
         window.location.href = urlName;
         });
 });
