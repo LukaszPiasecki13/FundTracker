@@ -72,16 +72,13 @@ def process_asset_data(data: dict):
 
         if asset_allocation_query.exists():
             asset_allocation = asset_allocation_query.first()
-            print("average_price", asset_allocation.average_price)
-            print( "quantity", asset_allocation.quantity)
-            print("data['price'", data['price'])
-            print("data['quantity'", data['quantity'])
-            asset_allocation.average_price = (asset_allocation.average_price + Decimal(data['price'])) / (asset_allocation.quantity +
-                                             + Decimal(data['quantity']))
+            asset_allocation.average_price = (
+                asset_allocation.average_price * asset_allocation.quantity + Decimal(data['price'])* Decimal(data['quantity'])) / (
+                    asset_allocation.quantity + Decimal(data['quantity']))   
             asset_allocation.quantity += Decimal(data['quantity'])
             asset_allocation.save()
         else:
-            
+
             AssetAllocation.objects.create(
                 pocket=Pocket.objects.get(name=data['pocket_name'], owner=data['owner']),
                 asset=Asset.objects.get(ticker=data['ticker']),
@@ -94,19 +91,3 @@ def process_asset_data(data: dict):
     except Exception as e:
         raise e
 
-
-
-if __name__ == "__main__":
-    data = {
-        'operation_type': 'Buy',
-        'ticker': 'AAPL',
-        'date': '2021-01-01',
-        'currency': 'USD',
-        'quantity': 10,
-        'price': 100,
-        'fee': 0,
-        'comment': 'Bought 10 shares of AAPL',
-        'asset_class': 'Stocks',
-        'owner': 'user1',
-        'pocket_name': 'Nazwa Konta1'
-    }

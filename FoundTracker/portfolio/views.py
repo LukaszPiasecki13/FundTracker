@@ -5,9 +5,10 @@ from django.views import View
 from .models import AssetClass, Currency, Operation
 from django.contrib import messages
 from .lib.asset_processor import process_asset_data 
+import traceback
 
 import logging
-import traceback
+
 
 logger = logging.getLogger(__name__)
 

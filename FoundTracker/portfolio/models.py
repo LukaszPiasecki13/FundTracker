@@ -16,7 +16,7 @@ class Operation(models.Model):
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.operation_type
+        return ("{}_{}".format(self.id, self.operation_type))
 
 
 class AssetClass(models.Model):
@@ -37,6 +37,15 @@ class Currency(models.Model):
     def __str__(self):
         return self.name
 
+class Asset(models.Model):
+    ticker = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
+    asset_class = models.CharField()
+    currency = models.CharField(max_length=3)
+
+    def __str__(self):
+        return self.name
+
 
 class Pocket(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -47,14 +56,6 @@ class Pocket(models.Model):
     def __str__(self):
         return self.name
 
-class Asset(models.Model):
-    ticker = models.CharField(max_length=10)
-    name = models.CharField(max_length=100)
-    asset_class = models.CharField()
-    currency = models.CharField(max_length=3)
-
-    def __str__(self):
-        return self.name
 
 class AssetAllocation(models.Model):
     pocket = models.ForeignKey(Pocket, on_delete=models.CASCADE)
