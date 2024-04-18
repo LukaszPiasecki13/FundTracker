@@ -1,6 +1,18 @@
 # FundTracker
 
-FundTracker is a Python program that helps you track your financial investments.
+
+FundTracker is a Python program that helps you track your financial investments. This program allows you to keep track of various financial investments, such as stocks, mutual funds, and bonds. It provides features to add new investments, update their values, and generate reports on your portfolio performance.
+
+Features:
+- Add new investments: You can add new investments to the program by providing details such as the investment type, name, and initial value.![alt text](pict/history_view.JPG)
+- Automaticly update investment values: Program automaticly update the current value of your investments to keep track of their performance over time.
+![alt text](pict/portfolio_view.JPG)
+- Generate reports: FundTracker can generate reports that provide insights into your portfolio performance, including overall returns, individual investment performance, and asset allocation. - ToDo
+
+
+
+
+
 
 ## Table of Contents
 
