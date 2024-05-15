@@ -12,12 +12,6 @@
     href="https://fonts.googleapis.com/css?family=Raleway"
   />
   <link rel="stylesheet" href="{% static 'css/portfolio/pocket.css' %}" />
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-y5ds5j1DJt+Ka+NXPI8GCSc01Ow99cZYJnA7wbvmA2EM4iCy8v5kKS1r4xlXpKv"
-    crossorigin="anonymous"
-  />
 
   <style>
     html,
@@ -28,6 +22,9 @@
     h4,
     h5 {
       font-family: "Raleway", sans-serif;
+      -webkit-font-feature-settings: "lnum";
+      -moz-font-feature-settings: "lnum";
+      font-feature-settings: "lnum";
     }
   </style>
 
@@ -37,6 +34,11 @@
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="{% static 'js/portfolio/pocket.js' %}"></script>
+  <!-- put data to global memory -->
+  <script>
+    window.usedAssetClassesDict = {{ used_asset_classes_dict|safe }};
+  </script>
+
 </head>
 
 <body class="w3-light-grey" style="margin-left: auto; margin-right: auto">
@@ -68,8 +70,10 @@
                 aria-expanded="false"
               ></button>
               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <a class="dropdown-item" onclick="openForm()" href="#">Buy</a>
-                <a class="dropdown-item" href="#">Sell</a>
+                <a class="dropdown-item" onclick="openBuyForm()" href="#"
+                  >Buy</a
+                >
+                <a class="dropdown-item" onclick="openSellForm()">Sell</a>
                 <a class="dropdown-item" href="#">Deposit of funds</a>
                 <a class="dropdown-item" href="#">Withdraw funds</a>
               </div>
@@ -88,6 +92,9 @@
     </div>
 
     <div class="form-popup" id="buyForm">
+      <span class="close" onclick="closeBuyForm()" style="float: right"
+        >&times;</span
+      >
       <form
         class="form-container needs-validation"
         style="text-align: center"
@@ -95,6 +102,7 @@
         method="post"
       >
         {% csrf_token %}
+
         <input type="hidden" name="operation" value="buy" />
         <h1>BUY</h1>
         <div>
@@ -105,7 +113,7 @@
                 <td>
                   <select
                     name="asset_class"
-                    id="type"
+                    id="asset_class_buy"
                     class="select2-hidden-accessible"
                   >
                     {% for asset_class in asset_classes %}
@@ -174,7 +182,112 @@
             type="button"
             class="btn btn-secondary"
             style="margin-left: 10px"
-            onclick="closeForm()"
+            onclick="closeBuyForm()"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-popup" id="sellForm">
+      <span class="close" onclick="closeSellForm()" style="float: right"
+        >&times;</span
+      >
+      <form
+        class="form-container needs-validation"
+        style="text-align: center"
+        action="{% url 'pocket' %}"
+        method="post"
+      >
+        {% csrf_token %}
+
+        <input type="hidden" name="operation" value="sell" />
+        <h1>SELL</h1>
+        <div>
+          <table>
+            <tr>
+              <div>
+                <td>Asset class:</td>
+                <td>
+                  <select
+                    name="asset_class"
+                    id="asset_class_sell"
+                    class="select2-hidden-accessible"
+                  >
+                    {% for asset_class in used_asset_classes_dict.keys %}
+                    <option value="{{asset_class}}">{{asset_class}}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+              </div>
+            </tr>
+            <tr>
+              <div>
+                <td>Ticker:</td>
+                <td>
+                  <select
+                    name="ticker"
+                    id="ticker"
+                    class="select2-hidden-accessible"
+                  >
+                    {% for ticker in used_tickers %}
+                    <option value="{{ticker}}">{{ticker}}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+              </div>
+            </tr>
+            <tr>
+              <td>Date:</td>
+              <td><input type="date" name="date" required /></td>
+            </tr>
+            <tr>
+              <td>Currency:</td>
+              <td>
+                <select
+                  name="currency"
+                  class="select2-hidden-accessible"
+                  required
+                >
+                  {% for currency in currencies %}
+                  <option value="{{currency.name}}">{{currency.name}}</option>
+                  {% endfor %}
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Quantity:</td>
+              <td><input type="number" name="quantity" required /></td>
+            </tr>
+            <tr>
+              <td>Price:</td>
+              <td><input type="number" name="price" required /></td>
+            </tr>
+            <tr>
+              <td>Fee:</td>
+              <td><input type="number" name="fee" /></td>
+            </tr>
+            <tr>
+              <td>Comment:</td>
+              <td><input type="text" name="comment" /></td>
+            </tr>
+          </table>
+        </div>
+        <div class="d-flex justify-content-center" style="margin-top: 25px">
+          <button
+            type="submit"
+            id="buy-button"
+            class="btn btn-secondary"
+            style="margin-right: 10px"
+          >
+            Sell
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            style="margin-left: 10px"
+            onclick="closeSellForm()"
           >
             Cancel
           </button>
@@ -192,28 +305,32 @@
             <th>Quantity</th>
             <th>Average purchase price [xxx]</th>
             <th>Current price [xxx]</th>
-            <th>Daily change [%]</th>
+            <th>Daily change</th>
             <th>Daily change [PLN]</th>
-            <th>Participation in portfolio [%]</th>
-            <th>Rate of return [%]</th>
-            <th>Rate of return [% PLN]</th>
+            <th>Participation in portfolio</th>
+            <th>Rate of return</th>
+            <th>Rate of return [PLN]</th>
             <th>Profit [PLN]</th>
             <th>Dividend</th>
           </tr>
         </thead>
 
-        <tbody>
-          {% for operation in operations %}
+        <tbody  style="font-size: 90%;">
+          {% for asset_allocation in asset_allocations %}
           <tr>
-            <td>{{operation.date}}</td>
-            <td>{{operation.operation_type}}</td>
-            <td>{{operation.asset_class}}</td>
-            <td>{{operation.ticker}}</td>
-            <td>{{operation.currency}}</td>
-            <td>{{operation.quantity}}</td>
-            <td>{{operation.price}}</td>
-            <td>{{operation.fee}}</td>
-            <td>{{operation.comment}}</td>
+            <td>{{asset_allocation.asset.name}}</td>
+            <td>{{asset_allocation.asset.asset_class}}</td>
+            <td>{{asset_allocation.asset.currency}}</td>
+            <td>{{asset_allocation.quantity}}</td>
+            <td>{{asset_allocation.average_purchase_price}}</td>
+            <td>{{asset_allocation.asset.current_price}}</td>
+            <td>{{asset_allocation.daily_change_percent}} %</td>
+            <td>{{asset_allocation.daily_change_XXX}}</td>
+            <td>{{asset_allocation.participation}} %</td>
+            <td>{{asset_allocation.rate_of_return}} %</td>
+            <td>{{asset_allocation.rate_of_return_XXX}} %</td>
+            <td>{{asset_allocation.profit_XXX}}</td>
+            <td>{{asset_allocation.dividends}}</td>
           </tr>
           {% endfor %}
         </tbody>

@@ -6,8 +6,8 @@ from .models import Operation, AssetClass, Currency, Pocket, Asset, AssetAllocat
 
 
 admin.site.register(Operation)
-# admin.site.register(AssetClass)
-# admin.site.register(Currency)
+admin.site.register(AssetClass)
+admin.site.register(Currency)
 admin.site.register(Pocket)
 admin.site.register(Asset)
 admin.site.register(AssetAllocation)

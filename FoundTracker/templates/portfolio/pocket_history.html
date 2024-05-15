@@ -11,13 +11,9 @@
     rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Raleway"
   />
-  <link rel="stylesheet" href="{% static 'css/portfolio/pocket.css' %}" />
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-y5ds5j1DJt+Ka+NXPI8GCSc01Ow99cZYJnA7wbvmA2EM4iCy8v5kKS1r4xlXpKv"
-    crossorigin="anonymous"
-  />
+  <link rel="stylesheet" href="{% static 'css/portfolio/pocket_history.css' %}" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+
 
   <style>
     html,
@@ -28,9 +24,14 @@
     h4,
     h5 {
       font-family: "Raleway", sans-serif;
+      -webkit-font-feature-settings: "lnum";
+      -moz-font-feature-settings: "lnum";
+      font-feature-settings: "lnum";
     }
   </style>
+  <script src="{% static 'js/portfolio/pocket_history.js' %}"></script>
 </head>
+
 
 <body class="w3-light-grey" style="margin-left: auto; margin-right: auto">
   <div class="overlay" id="overlay"></div>
@@ -39,7 +40,7 @@
   <div class="w3-main">
     <!-- Header -->
     <header class="w3-container text-center mb-3 mt-4">
-      <h3><b>Portfolio - History</b></h3>
+      <h3><b>{{ pocket_name }} - History</b></h3>
     </header>
 
     <div class="container mb-4">
@@ -71,11 +72,11 @@
             <th>Quantity</th>
             <th>Price</th>
             <th>Fee</th>
-            <th>Comment</th>
+            <th></th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody style="font-size: 90%;">
           {% for operation in operations %}
           <tr>
             <td>{{operation.date}}</td>
@@ -87,12 +88,32 @@
             <td>{{operation.quantity}}</td>
             <td>{{operation.price}}</td>
             <td>{{operation.fee}}</td>
-            <td>{{operation.comment}}</td>
+            <td>
+              <button type="button" class="btn ">
+                <i class="fas fa-trash-alt fa-lg" style="color: rgb(219, 3, 3); " onclick="openDeleteConfirmation('{{operation.id}}')" ></i>
+              </button>   
+            </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
+    <div class="delete-popup" id="deleteConfirmation">
+      <div class="delete-popup-content">
+        <span class="close" onclick="closeDeleteConfirmation()" style="float: right;">&times;</span>
+        <form action="{% url 'pocket_history' %} " method="post" onsubmit="setOperationId()">
+          <input type="hidden" name="operation_id" value="" id="operationIdField">
+          {% csrf_token %}
+          <div style="text-align: center;" >
+            <p>Are you sure you want to delete this operation?</p>
+            <button type="submit" class="btn btn-danger" >OK</button>
+            <button type="button" class="btn btn-warning" onclick="closeDeleteConfirmation()">Cancel</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+
   </div>
 </body>
 

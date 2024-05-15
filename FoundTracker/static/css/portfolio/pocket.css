@@ -16,7 +16,7 @@ h5 {
   display: none;
   position: fixed;
   top: 20%;
-  left: 30%;
+  left: 50%;
   border: 3px solid #f1f1f1;
   background-color: white;
   z-index: 9;
@@ -39,6 +39,6 @@ h5 {
 
 .center-text th,
 .center-text td {
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
 }

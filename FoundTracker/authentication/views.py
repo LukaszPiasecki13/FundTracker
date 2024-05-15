@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 import json
 from django.http import JsonResponse
-from django.contrib.auth.models import User
+from authentication.models import UserProfile
 from validate_email import validate_email
 from django.contrib import messages
 from django.contrib import auth
@@ -27,7 +27,7 @@ class EmailValidationView(View):
         email = data['email']
         if not validate_email(email):
             return JsonResponse({'email_error': 'Emial is invalid'}, status=400)
-        if User.objects.filter(email=email).exists():
+        if UserProfile.objects.filter(email=email).exists():
             return JsonResponse({'email_error': 'email already exists, choose another one'}, status=409)
 
         return JsonResponse({'email_valid': True})
@@ -47,13 +47,13 @@ class RegistrationView(View):
             'fieldValue': request.POST
         }
 
-        if not User.objects.filter(username=username).exists():
-            if not User.objects.filter(email=email).exists():
+        if not UserProfile.objects.filter(username=username).exists():
+            if not UserProfile.objects.filter(email=email).exists():
                 if len(password) < 6:
                     messages.error(request, 'Password too short. Need 6 marks')
                     return render(request, 'authentication/register.html', context)
 
-                user = User.objects.create_user(username=username, email=email)
+                user = UserProfile.objects.create_user(username=username, email=email)
                 user.set_password(password)
                 user.save()
                 messages.success(request, 'Account created successfully')
